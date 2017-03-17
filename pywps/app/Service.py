@@ -571,7 +571,7 @@ class Service(object):
             if wps_request.operation in ['getcapabilities',
                                          'describeprocess',
                                          'execute']:
-                log_request(request_uuid, wps_request)
+                #log_request(request_uuid, wps_request)
                 response = None
                 if wps_request.operation == 'getcapabilities':
                     response = self.get_capabilities()
