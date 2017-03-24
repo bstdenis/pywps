@@ -80,6 +80,7 @@ def log_request(uuid, request):
             break
         except:
             time.sleep(0.1)
+            session.rollback()
     else:
         session.commit()
     session.close()
@@ -154,6 +155,7 @@ def update_response(uuid, response, close=False):
                 break
             except:
                 time.sleep(0.1)
+                session.rollback()
         else:
             session.commit()
     session.close()
