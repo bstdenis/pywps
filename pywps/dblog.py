@@ -74,7 +74,7 @@ def log_request(uuid, request):
         time_start=time_start, identifier=identifier)
 
     session.add(request)
-    for i in range(10)
+    for i in range(10):
         try:
             session.commit()
             break
@@ -148,7 +148,7 @@ def update_response(uuid, response, close=False):
         request.message = message
         request.percent_done = status_percentage
         request.status = status
-        for i in range(10)
+        for i in range(10):
             try:
                 session.commit()
                 break
