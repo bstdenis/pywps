@@ -177,6 +177,7 @@ class Process(object):
                 break
             except:
                 time.sleep(0.1)
+                session.rollback()
         else:
             running = dblog.get_running().count()
             stored = dblog.get_stored().count()

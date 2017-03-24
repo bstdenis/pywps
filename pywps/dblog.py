@@ -149,6 +149,8 @@ def update_response(uuid, response, close=False):
             break
         except:
             time.sleep(0.1)
+            session.rollback()
+            requests = session.query(ProcessInstance).filter_by(uuid=str(uuid))
     else:
         rcount = requests.count()
     if rcount:
