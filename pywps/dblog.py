@@ -150,6 +150,7 @@ def update_response(uuid, response, close=False):
         except:
             time.sleep(0.1)
             session.rollback()
+            session = get_session()
             requests = session.query(ProcessInstance).filter_by(uuid=str(uuid))
     else:
         rcount = requests.count()
