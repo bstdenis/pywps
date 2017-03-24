@@ -143,7 +143,16 @@ def update_response(uuid, response, close=False):
             status = 0
 
     requests = session.query(ProcessInstance).filter_by(uuid=str(uuid))
-    if requests.count():
+    for i in range(10):
+        try:
+            rcount = requests.count()
+            break
+        except:
+            time.sleep(0.1)
+            session.rollback()
+    else:
+        rcount = requests.count()
+    if rcount:
         request = requests.one()
         request.time_end = datetime.datetime.now()
         request.message = message
