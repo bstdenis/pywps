@@ -74,7 +74,7 @@ def log_request(uuid, request):
         time_start=time_start, identifier=identifier)
 
     session.add(request)
-    for i in range(100):
+    for i in range(10):
         try:
             session.commit()
             break
@@ -143,13 +143,12 @@ def update_response(uuid, response, close=False):
             status = 0
 
     requests = session.query(ProcessInstance).filter_by(uuid=str(uuid))
-    for i in range(100):
+    for i in range(10):
         try:
             rcount = requests.count()
             break
         except:
             time.sleep(0.1)
-            session.rollback()
     else:
         rcount = requests.count()
     if rcount:
@@ -158,7 +157,7 @@ def update_response(uuid, response, close=False):
         request.message = message
         request.percent_done = status_percentage
         request.status = status
-        for i in range(100):
+        for i in range(10):
             try:
                 session.commit()
                 break
