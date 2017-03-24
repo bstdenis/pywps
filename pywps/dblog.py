@@ -78,7 +78,7 @@ def log_request(uuid, request):
         try:
             session.commit()
             break
-        except sqlite3.OperationalError:
+        except:
             time.sleep(0.1)
     else:
         session.commit()
@@ -152,7 +152,7 @@ def update_response(uuid, response, close=False):
             try:
                 session.commit()
                 break
-            except sqlite3.OperationalError:
+            except:
                 time.sleep(0.1)
         else:
             session.commit()
