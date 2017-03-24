@@ -17,6 +17,7 @@ import datetime
 import pickle
 import json
 import os
+import time
 
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
@@ -73,7 +74,14 @@ def log_request(uuid, request):
         time_start=time_start, identifier=identifier)
 
     session.add(request)
-    session.commit()
+    for i in range(10)
+        try:
+            session.commit()
+            break
+        except sqlite3.OperationalError:
+            time.sleep(0.1)
+    else:
+        session.commit()
     session.close()
     # NoApplicableCode("Could commit to database: {}".format(e.message))
 
@@ -140,7 +148,14 @@ def update_response(uuid, response, close=False):
         request.message = message
         request.percent_done = status_percentage
         request.status = status
-        session.commit()
+        for i in range(10)
+            try:
+                session.commit()
+                break
+            except sqlite3.OperationalError:
+                time.sleep(0.1)
+        else:
+            session.commit()
     session.close()
 
 
