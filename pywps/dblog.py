@@ -198,10 +198,10 @@ def get_session():
     if _LAST_SESSION:
         _LAST_SESSION.close()
 
-    if _SESSION_MAKER:
-        _SESSION_MAKER.close_all()
-        _LAST_SESSION = _SESSION_MAKER()
-        return _LAST_SESSION
+    #if _SESSION_MAKER:
+    #    _SESSION_MAKER.close_all()
+    #    _LAST_SESSION = _SESSION_MAKER()
+    #    return _LAST_SESSION
 
     database = configuration.get_config_value('logging', 'database')
     echo = True
