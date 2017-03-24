@@ -308,7 +308,10 @@ class Service(object):
             os.chdir(process.workdir)
             response = self._parse_and_execute(process, wps_request, uuid)
         finally:
-            os.chdir(olddir)
+            try:
+                os.chdir(olddir)
+            except OSError:
+                os.chdir(os.path.abspath(config.get_config_value('server', 'workdir')))
 
         return response
 
